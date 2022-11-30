@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import seaborn as sns
+import csv
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
@@ -103,3 +104,21 @@ matriz = confusion_matrix(y_test, y_pred)
 print(matriz)
 relatorio = classification_report(y_test, y_pred)
 print(relatorio)
+
+def teste(dados):
+    with open('example.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(X_test) # cabeçalho
+        writer.writerow(dados) # dados
+    arquivo = pd.read_csv('example.csv')
+    lista_numpy = modelo.predict(arquivo)
+    lista_resultado = lista_numpy.tolist()
+    match lista_resultado[0]:
+        case 0:
+            resposta = 'negativo'
+        case 1:
+            resposta = 'positivo'
+        case default:
+            resposta = 'erro'
+    
+    return resposta
