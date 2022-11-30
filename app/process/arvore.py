@@ -106,14 +106,14 @@ relatorio = classification_report(y_test, y_pred)
 print(relatorio)
 
 def teste(dados):
-    with open('example.csv', 'w', newline='') as file:
+    with open('example.csv', 'w', newline='') as file: #escreve os dados em um arquivo csv
         writer = csv.writer(file)
         writer.writerow(X_test) # cabeçalho
         writer.writerow(dados) # dados
-    arquivo = pd.read_csv('example.csv')
-    lista_numpy = modelo.predict(arquivo)
-    lista_resultado = lista_numpy.tolist()
-    match lista_resultado[0]:
+    arquivo = pd.read_csv('example.csv') # lê os dados do arquivo csv que foi escrito
+    lista_numpy = modelo.predict(arquivo) # utiliza a árovere e retorna um resultado
+    lista_resultado = lista_numpy.tolist() # convertendo o resultado que está como listanumpy em lista
+    match lista_resultado[0]: #o resultado retornado é 0 para negativo e 1 para positivo nesse exemplo
         case 0:
             resposta = 'negativo'
         case 1:
